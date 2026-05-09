@@ -79,7 +79,7 @@ def post_list():
                                      subquery.c.nickname.ilike(search) # 댓글 작성자 닉네임
                                     ).distinct()
 
-    post_list = post_list.order_by(Post.create_date.desc()).paginate(page, per_page=per_page)
+    post_list = post_list.order_by(Post.create_date.desc()).paginate(page=page, per_page=per_page)
 
     return render_template('post/post_list.html', title='게시판', post_list=post_list, page=page, per_page=per_page, category=category, keyword=keyword)
 

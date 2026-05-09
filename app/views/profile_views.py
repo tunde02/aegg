@@ -26,8 +26,8 @@ def info(username):
 
     user = User.query.filter_by(username=username).first()
 
-    post_notification_list = PostNotification.query.filter_by(user=user).order_by(PostNotification.create_date.desc()).paginate(1, per_page=20)
-    comment_notification_list = CommentNotification.query.filter_by(user=user).order_by(CommentNotification.create_date.desc()).paginate(1, per_page=20)
+    post_notification_list = PostNotification.query.filter_by(user=user).order_by(PostNotification.create_date.desc()).paginate(page=1, per_page=20)
+    comment_notification_list = CommentNotification.query.filter_by(user=user).order_by(CommentNotification.create_date.desc()).paginate(page=1, per_page=20)
     num_notifications = len(PostNotification.query.filter_by(user=user, is_checked=False).all()) + len(CommentNotification.query.filter_by(user=user, is_checked=False).all())
 
     return render_template('profile/profile_base.html', user=user, post_notification_list=post_notification_list, comment_notification_list=comment_notification_list, num_notifications=num_notifications)
